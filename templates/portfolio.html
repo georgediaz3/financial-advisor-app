@@ -575,6 +575,16 @@
       },
       plugins: [],
     };
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+});
+
 </script>
 <main class="container mx-auto px-4 py-8" style="padding-top: 100px;">
     <header id="header" class="fixed w-full bg-white border-b border-neutral-200 z-50">
