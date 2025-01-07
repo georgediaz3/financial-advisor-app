@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add custom styles here */
+.custom-class {
+    @apply text-blue-500 font-bold;
+}

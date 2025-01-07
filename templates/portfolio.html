@@ -1,0 +1,812 @@
+
+<html>
+              
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest', // Options: 'nest', 'remove', 'replace'
+      };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+  * {
+    font-family: "Inter", sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+ :root {
+    /* Base colors */
+    --color-base: #ffffff;
+    --color-base-50: #f9fafb;
+    --color-base-100: #f3f4f6;
+    --color-base-200: #e5e7eb;
+    --color-base-300: #d1d5db;
+    --color-base-400: #9ca3af;
+    --color-base-500: #6b7280;
+    --color-base-600: #4b5563;  
+    --color-base-700: #374151;
+    --color-base-800: #1f2937;  
+    --color-base-900: #111827;
+    --color-base-content: #1f2937;
+
+    /* Primary colors */
+    --color-primary: #3b82f6;
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+    --color-primary-focus: #2563eb;
+    --color-primary-content: #ffffff;
+
+    /* Secondary colors */
+    --color-secondary: #8b5cf6;
+    --color-secondary-50: #f5f3ff;
+    --color-secondary-100: #ede9fe;
+    --color-secondary-200: #ddd6fe;
+    --color-secondary-300: #c4b5fd;
+    --color-secondary-400: #a78bfa;
+    --color-secondary-500: #8b5cf6;
+    --color-secondary-600: #7c3aed;
+    --color-secondary-700: #6d28d9;
+    --color-secondary-800: #5b21b6;
+    --color-secondary-900: #4c1d95;
+    --color-secondary-focus: #7c3aed;
+    --color-secondary-content: #ffffff;
+
+    /* Accent colors */
+    --color-accent: #f472b6;
+    --color-accent-50: #fdf2f8;
+    --color-accent-100: #fce7f3;
+    --color-accent-200: #fbcfe8;
+    --color-accent-300: #f9a8d4;
+    --color-accent-400: #f472b6;
+    --color-accent-500: #ec4899;
+    --color-accent-600: #db2777;
+    --color-accent-700: #be185d;
+    --color-accent-800: #9d174d;
+    --color-accent-900: #831843;
+    --color-accent-focus: #db2777;
+    --color-accent-content: #ffffff;
+
+    /* Neutral colors */
+    --color-neutral: #6b7280;
+    --color-neutral-50: #f9fafb;
+    --color-neutral-100: #f3f4f6;
+    --color-neutral-200: #e5e7eb;
+    --color-neutral-300: #d1d5db;
+    --color-neutral-400: #9ca3af;
+    --color-neutral-500: #6b7280;
+    --color-neutral-600: #4b5563;
+    --color-neutral-700: #374151;
+    --color-neutral-800: #1f2937;
+    --color-neutral-900: #111827;
+    --color-neutral-focus: #4b5563;
+    --color-neutral-content: #ffffff;
+
+    /* Info colors */
+    --color-info: #3b82f6;
+    --color-info-50: #eff6ff;
+    --color-info-100: #dbeafe;
+    --color-info-200: #bfdbfe;
+    --color-info-300: #93c5fd;
+    --color-info-400: #60a5fa;
+    --color-info-500: #3b82f6;
+    --color-info-600: #2563eb;
+    --color-info-700: #1d4ed8;
+    --color-info-800: #1e40af;
+    --color-info-900: #1e3a8a;
+    --color-info-focus: #2563eb;
+    --color-info-content: #ffffff;
+
+    /* Success colors */
+    --color-success: #10b981;
+    --color-success-50: #ecfdf5;
+    --color-success-100: #d1fae5;
+    --color-success-200: #a7f3d0;
+    --color-success-300: #6ee7b7;
+    --color-success-400: #34d399;
+    --color-success-500: #10b981;
+    --color-success-600: #059669;
+    --color-success-700: #047857;
+    --color-success-800: #065f46;
+    --color-success-900: #064e3b;
+    --color-success-focus: #059669;
+    --color-success-content: #ffffff;
+
+    /* Warning colors */
+    --color-warning: #f59e0b;
+    --color-warning-50: #fffbeb;
+    --color-warning-100: #fef3c7;
+    --color-warning-200: #fde68a;
+    --color-warning-300: #fcd34d;
+    --color-warning-400: #fbbf24;
+    --color-warning-500: #f59e0b;
+    --color-warning-600: #d97706;
+    --color-warning-700: #b45309;
+    --color-warning-800: #92400e;
+    --color-warning-900: #78350f;
+    --color-warning-focus: #d97706;
+    --color-warning-content: #ffffff;
+
+    /* Error colors */
+    --color-error: #ef4444;
+    --color-error-50: #fef2f2;
+    --color-error-100: #fee2e2;
+    --color-error-200: #fecaca;
+    --color-error-300: #fca5a5;
+    --color-error-400: #f87171;
+    --color-error-500: #ef4444;
+    --color-error-600: #dc2626;
+    --color-error-700: #b91c1c;
+    --color-error-800: #991b1b;
+    --color-error-900: #7f1d1d;
+    --color-error-focus: #dc2626;
+    --color-error-content: #ffffff;
+  }
+
+  /* Dark theme */
+  .dark {
+    /* Base colors */
+    --color-base: #1f2937;
+    --color-base-50: #111827;
+    --color-base-100: #1f2937;
+    --color-base-200: #374151;
+    --color-base-300: #4b5563;
+    --color-base-400: #6b7280;
+    --color-base-500: #9ca3af;
+    --color-base-600: #d1d5db;
+    --color-base-700: #e5e7eb;
+    --color-base-800: #f3f4f6;
+    --color-base-900: #f9fafb;
+    --color-base-content: #f9fafb;
+
+    /* Primary colors */
+    --color-primary: #60a5fa;
+    --color-primary-50: #1e3a8a;
+    --color-primary-100: #1e40af;
+    --color-primary-200: #1d4ed8;
+    --color-primary-300: #2563eb;
+    --color-primary-400: #3b82f6;
+    --color-primary-500: #60a5fa;
+    --color-primary-600: #93c5fd;
+    --color-primary-700: #bfdbfe;
+    --color-primary-800: #dbeafe;
+    --color-primary-900: #eff6ff;
+    --color-primary-focus: #3b82f6;
+    --color-primary-content: #1f2937;
+
+    /* Secondary colors */
+    --color-secondary: #a78bfa;
+    --color-secondary-50: #4c1d95;
+    --color-secondary-100: #5b21b6;
+    --color-secondary-200: #6d28d9;
+    --color-secondary-300: #7c3aed;
+    --color-secondary-400: #8b5cf6;
+    --color-secondary-500: #a78bfa;
+    --color-secondary-600: #c4b5fd;
+    --color-secondary-700: #ddd6fe;
+    --color-secondary-800: #ede9fe;
+    --color-secondary-900: #f5f3ff;
+    --color-secondary-focus: #8b5cf6;
+    --color-secondary-content: #1f2937;
+
+    /* Accent colors */
+    --color-accent: #f472b6;
+    --color-accent-50: #831843;
+    --color-accent-100: #9d174d;
+    --color-accent-200: #be185d;
+    --color-accent-300: #db2777;
+    --color-accent-400: #ec4899;
+    --color-accent-500: #f472b6;
+    --color-accent-600: #f9a8d4;
+    --color-accent-700: #fbcfe8;
+    --color-accent-800: #fce7f3;
+    --color-accent-900: #fdf2f8;
+    --color-accent-focus: #ec4899;
+    --color-accent-content: #1f2937;
+
+    /* Neutral colors remain the same as light theme */
+
+    /* Info colors */
+    --color-info: #60a5fa;
+    --color-info-50: #1e3a8a;
+    --color-info-100: #1e40af;
+    --color-info-200: #1d4ed8;
+    --color-info-300: #2563eb;
+    --color-info-400: #3b82f6;
+    --color-info-500: #60a5fa;
+    --color-info-600: #93c5fd;
+    --color-info-700: #bfdbfe;
+    --color-info-800: #dbeafe;
+    --color-info-900: #eff6ff;
+    --color-info-focus: #3b82f6;
+    --color-info-content: #1f2937;
+
+    /* Success colors */
+    --color-success: #34d399;
+    --color-success-50: #064e3b;
+    --color-success-100: #065f46;
+    --color-success-200: #047857;
+    --color-success-300: #059669;
+    --color-success-400: #10b981;
+    --color-success-500: #34d399;
+    --color-success-600: #6ee7b7;
+    --color-success-700: #a7f3d0;
+    --color-success-800: #d1fae5;
+    --color-success-900: #ecfdf5;
+    --color-success-focus: #10b981;
+    --color-success-content: #1f2937;
+
+    /* Warning colors */
+    --color-warning: #fbbf24;
+    --color-warning-50: #78350f;
+    --color-warning-100: #92400e;
+    --color-warning-200: #b45309;
+    --color-warning-300: #d97706;
+    --color-warning-400: #f59e0b;
+    --color-warning-500: #fbbf24;
+    --color-warning-600: #fcd34d;
+    --color-warning-700: #fde68a;
+    --color-warning-800: #fef3c7;
+    --color-warning-900: #fffbeb;
+    --color-warning-focus: #f59e0b;
+    --color-warning-content: #1f2937;
+
+    /* Error colors */
+    --color-error: #f87171;
+    --color-error-50: #7f1d1d;
+    --color-error-100: #991b1b;
+    --color-error-200: #b91c1c;
+    --color-error-300: #dc2626;
+    --color-error-400: #ef4444;
+    --color-error-500: #f87171;
+    --color-error-600: #fca5a5;
+    --color-error-700: #fecaca;
+    --color-error-800: #fee2e2;
+    --color-error-900: #fef2f2;
+    --color-error-focus: #ef4444;
+    --color-error-content: #1f2937;
+  }
+</style>
+
+<script>
+  tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Default Tailwind colors
+            transparent: 'transparent',
+            current: 'currentColor',
+            black: '#000000',
+            white: '#ffffff',
+            gray: {
+              50: '#f9fafb',
+              100: '#f3f4f6',
+              200: '#e5e7eb',
+              300: '#d1d5db',
+              400: '#9ca3af',
+              500: '#6b7280',
+              600: '#4b5563',
+              700: '#374151',
+              800: '#1f2937',
+              900: '#111827',
+            },
+            red: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#7f1d1d',
+            },
+            yellow: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            },
+            green: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+            blue: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            indigo: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            purple: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            },
+            pink: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              200: '#fbcfe8',
+              300: '#f9a8d4',
+              400: '#f472b6',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+              800: '#9d174d',
+              900: '#831843',
+            },
+
+            // Custom color schemes
+            base: {
+              DEFAULT: 'var(--color-base)',
+              50: 'var(--color-base-50)',
+              100: 'var(--color-base-100)',
+              200: 'var(--color-base-200)',
+              300: 'var(--color-base-300)',
+              400: 'var(--color-base-400)',
+              500: 'var(--color-base-500)',
+              600: 'var(--color-base-600)',
+              700: 'var(--color-base-700)',
+              800: 'var(--color-base-800)',
+              900: 'var(--color-base-900)',
+              content: 'var(--color-base-content)',
+            },
+            primary: {
+              DEFAULT: 'var(--color-primary)',
+              50: 'var(--color-primary-50)',
+              100: 'var(--color-primary-100)',
+              200: 'var(--color-primary-200)',
+              300: 'var(--color-primary-300)',
+              400: 'var(--color-primary-400)',
+              500: 'var(--color-primary-500)',
+              600: 'var(--color-primary-600)',
+              700: 'var(--color-primary-700)',
+              800: 'var(--color-primary-800)',
+              900: 'var(--color-primary-900)',
+              focus: 'var(--color-primary-focus)',
+              content: 'var(--color-primary-content)',
+            },
+            secondary: {
+              DEFAULT: 'var(--color-secondary)',
+              50: 'var(--color-secondary-50)',
+              100: 'var(--color-secondary-100)',
+              200: 'var(--color-secondary-200)',
+              300: 'var(--color-secondary-300)',
+              400: 'var(--color-secondary-400)',
+              500: 'var(--color-secondary-500)',
+              600: 'var(--color-secondary-600)',
+              700: 'var(--color-secondary-700)',
+              800: 'var(--color-secondary-800)',
+              900: 'var(--color-secondary-900)',
+              focus: 'var(--color-secondary-focus)',
+              content: 'var(--color-secondary-content)',
+            },
+            accent: {
+              DEFAULT: 'var(--color-accent)',
+              50: 'var(--color-accent-50)',
+              100: 'var(--color-accent-100)',
+              200: 'var(--color-accent-200)',
+              300: 'var(--color-accent-300)',
+              400: 'var(--color-accent-400)',
+              500: 'var(--color-accent-500)',
+              600: 'var(--color-accent-600)',
+              700: 'var(--color-accent-700)',
+              800: 'var(--color-accent-800)',
+              900: 'var(--color-accent-900)',
+              focus: 'var(--color-accent-focus)',
+              content: 'var(--color-accent-content)',
+            },
+            neutral: {
+              DEFAULT: 'var(--color-neutral)',
+              50: 'var(--color-neutral-50)',
+              100: 'var(--color-neutral-100)',
+              200: 'var(--color-neutral-200)',
+              300: 'var(--color-neutral-300)',
+              400: 'var(--color-neutral-400)',
+              500: 'var(--color-neutral-500)',
+              600: 'var(--color-neutral-600)',
+              700: 'var(--color-neutral-700)',
+              800: 'var(--color-neutral-800)',
+              900: 'var(--color-neutral-900)',
+              focus: 'var(--color-neutral-focus)',
+              content: 'var(--color-neutral-content)',
+            },
+            info: {
+              DEFAULT: 'var(--color-info)',
+              50: 'var(--color-info-50)',
+              100: 'var(--color-info-100)',
+              200: 'var(--color-info-200)',
+              300: 'var(--color-info-300)',
+              400: 'var(--color-info-400)',
+              500: 'var(--color-info-500)',
+              600: 'var(--color-info-600)',
+              700: 'var(--color-info-700)',
+              800: 'var(--color-info-800)',
+              900: 'var(--color-info-900)',
+              focus: 'var(--color-info-focus)',
+              content: 'var(--color-info-content)',
+            },
+            success: {
+              DEFAULT: 'var(--color-success)',
+              50: 'var(--color-success-50)',
+              100: 'var(--color-success-100)',
+              200: 'var(--color-success-200)',
+              300: 'var(--color-success-300)',
+              400: 'var(--color-success-400)',
+              500: 'var(--color-success-500)',
+              600: 'var(--color-success-600)',
+              700: 'var(--color-success-700)',
+              800: 'var(--color-success-800)',
+              900: 'var(--color-success-900)',
+              focus: 'var(--color-success-focus)',
+              content: 'var(--color-success-content)',
+            },
+            warning: {
+              DEFAULT: 'var(--color-warning)',
+              50: 'var(--color-warning-50)',
+              100: 'var(--color-warning-100)',
+              200: 'var(--color-warning-200)',
+              300: 'var(--color-warning-300)',
+              400: 'var(--color-warning-400)',
+              500: 'var(--color-warning-500)',
+              600: 'var(--color-warning-600)',
+              700: 'var(--color-warning-700)',
+              800: 'var(--color-warning-800)',
+              900: 'var(--color-warning-900)',
+              focus: 'var(--color-warning-focus)',
+              content: 'var(--color-warning-content)',
+            },
+            error: {
+              DEFAULT: 'var(--color-error)',
+              50: 'var(--color-error-50)',
+              100: 'var(--color-error-100)',
+              200: 'var(--color-error-200)',
+              300: 'var(--color-error-300)',
+              400: 'var(--color-error-400)',
+              500: 'var(--color-error-500)',
+              600: 'var(--color-error-600)',
+              700: 'var(--color-error-700)',
+              800: 'var(--color-error-800)',
+              900: 'var(--color-error-900)',
+              focus: 'var(--color-error-focus)',
+              content: 'var(--color-error-content)',
+            },
+            // Aliases
+            danger:  {
+              DEFAULT: 'var(--color-error)',
+              50: 'var(--color-error-50)',
+              100: 'var(--color-error-100)',
+              200: 'var(--color-error-200)',
+              300: 'var(--color-error-300)',
+              400: 'var(--color-error-400)',
+              500: 'var(--color-error-500)',
+              600: 'var(--color-error-600)',
+              700: 'var(--color-error-700)',
+              800: 'var(--color-error-800)',
+              900: 'var(--color-error-900)',
+              focus: 'var(--color-error-focus)',
+              content: 'var(--color-error-content)',
+            },
+            failure:  {
+              DEFAULT: 'var(--color-error)',
+              50: 'var(--color-error-50)',
+              100: 'var(--color-error-100)',
+              200: 'var(--color-error-200)',
+              300: 'var(--color-error-300)',
+              400: 'var(--color-error-400)',
+              500: 'var(--color-error-500)',
+              600: 'var(--color-error-600)',
+              700: 'var(--color-error-700)',
+              800: 'var(--color-error-800)',
+              900: 'var(--color-error-900)',
+              focus: 'var(--color-error-focus)',
+              content: 'var(--color-error-content)',
+            },
+          },
+        },
+      },
+      variants: {
+        extend: {
+          backgroundColor: ['active', 'group-hover'],
+          textColor: ['active', 'group-hover'],
+        },
+      },
+      plugins: [],
+    };
+</script>
+<main class="container mx-auto px-4 py-8" style="padding-top: 100px;">
+    <header id="header" class="fixed w-full bg-white border-b border-neutral-200 z-50" style="top: 0; left: 0; padding: 0; margin: 0;">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+          <a href="/" class="flex items-center space-x-2">
+            <span class="text-xl font-bold">FYINANCE</span>
+        </a>  
+          <div class="hidden md:flex space-x-6">
+            <a href="{{ url_for('aboutus') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>About Us</span>
+            </a>
+            <a href="{{ url_for('tools') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
+              <i class="fa-solid fa-calculator"></i>
+              <span>Tools</span>
+            </a>
+            <a href="{{ url_for('planning') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
+              <i class="fa-solid fa-piggy-bank"></i>
+              <span>Planning</span>
+          </a>    
+            <a href="{{ url_for('chatbot') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
+              <i class="fa-solid fa-robot"></i>
+              <span>AI Assistant</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+          </div>
+        </nav>
+      </header>
+    <!-- Hero Section -->
+    <section id="hero" class="text-center mb-16">
+      <h1 class="text-4xl font-bold mb-4">Investment Portfolio Analyzer</h1>
+      <p class="text-neutral-600 mb-8 max-w-2xl mx-auto">
+        Evaluate and optimize your portfolio to achieve the perfect balance between risk and return.
+      </p>
+      <button id="analyzeButton" class="bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800">
+        Start Analyzing Now
+      </button>
+    </section>
+
+    <!-- Portfolio Input Section -->
+    <section id="portfolio-input" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">Portfolio Details</h2>
+        <button id="addRowButton" class="bg-neutral-100 px-4 py-2 rounded-lg flex items-center space-x-2">
+          <i class="fa-solid fa-plus"></i>
+          <span>Add Investment</span>
+        </button>
+      </div>
+      <div id="investmentRows">
+        <div class="investment-row grid grid-cols-3 gap-4 mb-4">
+          <input type="text" placeholder="Enter asset name" class="w-full px-3 py-2 border border-neutral-200 rounded-lg" />
+          <select class="w-full px-3 py-2 border border-neutral-200 rounded-lg">
+            <option value="Stocks">Stocks</option>
+            <option value="Bonds">Bonds</option>
+            <option value="ETFs">ETFs</option>
+            <option value="Crypto">Crypto</option>
+          </select>
+          <input type="number" placeholder="Investment amount" class="w-full px-3 py-2 border border-neutral-200 rounded-lg" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Summary Section -->
+    <section id="portfolio-summary" class="grid grid-cols-2 gap-8 mb-8">
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <h3 class="text-xl font-semibold mb-4">Portfolio Overview</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 bg-neutral-50 rounded-lg">
+            <p class="text-sm text-neutral-600">Total Value</p>
+            <p id="totalValue" class="text-2xl font-semibold">$0</p>
+          </div>
+          <div class="p-4 bg-neutral-50 rounded-lg">
+            <p class="text-sm text-neutral-600">Assets</p>
+            <p id="totalAssets" class="text-2xl font-semibold">0</p>
+          </div>
+        </div>
+        <div id="riskChartPlaceholder" class="h-[300px] bg-neutral-100 rounded-lg mt-4"></div>
+      </div>
+      <section id="recommendations" class="bg-white rounded-xl shadow-sm p-6">
+        <h3 class="text-xl font-semibold mb-6">Improvement Recommendations</h3>
+        <div id="recommendationsContainer"></div>
+      </section>
+    </section>
+
+    <!-- Recommendations Section -->
+  </main>
+</div>
+
+<!-- JavaScript -->
+<script>
+// Portfolio Data Array
+let portfolioData = [];
+
+// Add Investment Row
+document.getElementById("addRowButton").addEventListener("click", () => {
+  const container = document.getElementById("investmentRows");
+  const row = document.createElement("div");
+  row.className = "investment-row grid grid-cols-3 gap-4 mb-4";
+  row.innerHTML = `
+    <input type="text" placeholder="Enter asset name" class="w-full px-3 py-2 border border-neutral-200 rounded-lg" />
+    <select class="w-full px-3 py-2 border border-neutral-200 rounded-lg">
+      <option value="Stocks">Stocks</option>
+      <option value="Bonds">Bonds</option>
+      <option value="ETFs">ETFs</option>
+      <option value="Crypto">Crypto</option>
+    </select>
+    <input type="number" placeholder="Investment amount" class="w-full px-3 py-2 border border-neutral-200 rounded-lg" />
+  `;
+  container.appendChild(row);
+});
+
+// Analyze Portfolio
+document.getElementById("analyzeButton").addEventListener("click", () => {
+  captureUserInputs();
+  if (portfolioData.length > 0) {
+    updatePortfolioMetrics();
+    generateRecommendations();
+  } else {
+    alert("Please add at least one investment to analyze.");
+  }
+});
+
+// Capture User Inputs
+function captureUserInputs() {
+  const rows = document.querySelectorAll("#investmentRows .investment-row");
+  portfolioData = [];
+
+  rows.forEach((row) => {
+    const name = row.querySelector('input[placeholder="Enter asset name"]').value;
+    const type = row.querySelector("select").value;
+    const amount = parseFloat(row.querySelector('input[placeholder="Investment amount"]').value) || 0;
+
+    if (name && type && amount > 0) {
+      portfolioData.push({
+        name,
+        type,
+        amount,
+        risk: determineRisk(type),
+        reliability: determineReliability(type),
+      });
+    }
+  });
+}
+
+// Determine Risk
+function determineRisk(type) {
+  const risks = { Stocks: "High", Bonds: "Low", ETFs: "Medium", Crypto: "High" };
+  return risks[type] || "Unknown";
+}
+
+// Determine Reliability
+function determineReliability(type) {
+  const reliabilities = { Stocks: "Moderate", Bonds: "High", ETFs: "High", Crypto: "Low" };
+  return reliabilities[type] || "Unknown";
+}
+
+// Update Portfolio Metrics
+function updatePortfolioMetrics() {
+  const totalValue = portfolioData.reduce((sum, asset) => sum + asset.amount, 0);
+  const totalAssets = portfolioData.length;
+
+  document.getElementById("totalValue").textContent = `$${totalValue.toLocaleString()}`;
+  document.getElementById("totalAssets").textContent = totalAssets;
+
+  const riskDistribution = portfolioData.reduce((acc, asset) => {
+    acc[asset.risk] = (acc[asset.risk] || 0) + asset.amount;
+    return acc;
+  }, {});
+
+  const allocation = portfolioData.reduce((acc, asset) => {
+    acc[asset.type] = (acc[asset.type] || 0) + asset.amount;
+    return acc;
+  }, {});
+
+  renderCharts(riskDistribution, allocation);
+}
+
+// Render Charts with Custom Colors
+function renderCharts(riskDistribution, allocation) {
+  // Custom Colors for Pie Chart
+  const pieColors = {
+    Stocks: "#3b82f6", // Blue
+    Bonds: "#10b981",  // Green
+    ETFs: "#f59e0b",   // Yellow
+    Crypto: "#ef4444", // Red
+  };
+
+  // Risk Distribution Chart
+  new ApexCharts(document.querySelector("#riskChartPlaceholder"), {
+    series: Object.values(allocation), // Use allocation for pie chart
+    chart: { type: "pie" },
+    labels: Object.keys(allocation),
+    colors: Object.keys(allocation).map((type) => pieColors[type] || "#999999"), // Default gray for unknown types
+  }).render();
+
+  // Asset Allocation Chart
+  new ApexCharts(document.querySelector("#allocationChartPlaceholder"), {
+    series: Object.values(allocation),
+    chart: { type: "bar" },
+    xaxis: { categories: Object.keys(allocation) },
+    colors: Object.keys(allocation).map((type) => pieColors[type] || "#999999"), // Match bar colors to pie
+  }).render();
+}
+
+// Generate Recommendations
+function generateRecommendations() {
+  const recommendationsContainer = document.getElementById("recommendationsContainer");
+  recommendationsContainer.innerHTML = "";
+
+  portfolioData.forEach((asset) => {
+    let suggestion = "";
+
+    if (asset.risk === "High" && asset.reliability === "Low") {
+      suggestion = `Consider reducing your allocation in ${asset.name} (${asset.type}) to minimize risk.`;
+    } else if (asset.reliability === "High") {
+      suggestion = `Your investment in ${asset.name} (${asset.type}) is reliable. Consider maintaining or increasing this allocation.`;
+    } else {
+      suggestion = `Review your investment in ${asset.name} (${asset.type}) for potential optimization.`;
+    }
+
+    const recommendation = document.createElement("div");
+    recommendation.className = "p-4 border border-neutral-200 rounded-lg mb-4";
+    recommendation.innerHTML = `
+      <h4 class="font-semibold mb-2">Improvement Suggestion</h4>
+      <p class="text-sm text-neutral-600">${suggestion}</p>
+    `;
+    recommendationsContainer.appendChild(recommendation);
+  });
+}
+
+  </script>
+</body>
+</html>
+    

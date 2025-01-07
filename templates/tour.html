@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Tour</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mx-auto px-4 py-16">
+        <h1 class="text-4xl font-bold mb-6">Welcome to Financial Wisdom!</h1>
+        <p class="text-lg mb-4">Here's a quick tour of our platform to help you get started:</p>
+        <div class="video-container">
+            <iframe 
+                src="https://youtu.be/96wZTUq6kcU?si=MPdzMyGGRAR3kLAR" 
+                frameborder="0" 
+                allowfullscreen 
+                class="w-full h-64">
+            </iframe>
+        </div>
+        <a href="/" class="px-6 py-3 bg-neutral-800 text-white rounded-lg mt-6 inline-block">Return to Home</a>
+    </div>
+</body>
+</html>
