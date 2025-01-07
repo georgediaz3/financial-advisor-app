@@ -432,13 +432,19 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
     </head>
     <body class="h-full text-base-content">
-    <div id="root" class="min-h-screen bg-neutral-50">
-<header id="header" class="fixed w-full bg-white border-b border-neutral-200 z-50">
+          <div class="min-h-screen bg-neutral-50">
+            <!-- Header Section -->
+            <header id="header" class="fixed w-full bg-white border-b border-neutral-200 z-50">
   <nav class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
     <!-- Logo -->
     <a href="/" class="flex items-center space-x-2">
       <span class="text-xl font-bold">FYINANCE</span>
     </a>
+
+    <!-- Hamburger Menu for Mobile -->
+    <button id="menu-toggle" class="md:hidden text-neutral-600 hover:text-neutral-900">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
 
     <!-- Navigation Links -->
     <div id="menu" class="hidden w-full md:flex md:w-auto mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-6">
