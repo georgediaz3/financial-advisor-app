@@ -668,39 +668,36 @@ function scrollToSection(button) {
         <body class="h-full text-base-content">
           <div class="min-h-screen bg-neutral-50">
             <!-- Header Section -->
-            <header id="header" class="fixed w-full bg-white border-b border-neutral-200 shadow-sm z-50">
-              <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-                <!-- Logo Section -->
-                <a href="/" class="flex items-center space-x-2">
-                    <span class="text-xl font-bold">FYINANCE</span>
-                </a>                
-        
-                <!-- Navigation Links -->
-                <div class="hidden md:flex space-x-6">
-                  <a href="{{ url_for('aboutus') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>About Us</span>
-                  </a>
-                  <a href="{{ url_for('tools') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
-                    <i class="fa-solid fa-calculator"></i>
-                    <span>Tools</span>
-                  </a>
-                  <a href="{{ url_for('planning') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
-                    <i class="fa-solid fa-piggy-bank"></i>
-                    <span>Planning</span>
-                  </a>
-                  <a href="{{ url_for('chatbot') }}" class="flex items-center space-x-1 text-neutral-600 hover:text-neutral-900">
-                    <i class="fa-solid fa-robot"></i>
-                    <span>AI Assistant</span>
-                  </a>
-                </div>
-        
-                <!-- Additional Actions -->
-                <div class="flex items-center space-x-4">
-                  <!-- Optional: Add login or additional buttons here -->
-                </div>
-              </nav>
-            </header>
+            <header id="header" class="fixed w-full bg-white border-b border-neutral-200 z-50">
+  <nav class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+    <!-- Logo -->
+    <a href="/" class="flex items-center space-x-2">
+      <span class="text-xl font-bold">FYINANCE</span>
+    </a>
+
+    <!-- Hamburger Menu for Mobile -->
+    <button id="menu-toggle" class="md:hidden text-neutral-600 hover:text-neutral-900">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+
+    <!-- Navigation Links -->
+    <div id="menu" class="hidden w-full md:flex md:w-auto mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-6">
+      <a href="{{ url_for('aboutus') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+        About Us
+      </a>
+      <a href="{{ url_for('tools') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+        Tools
+      </a>
+      <a href="{{ url_for('planning') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+        Planning
+      </a>
+      <a href="{{ url_for('chatbot') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+        AI Assistant
+      </a>
+    </div>
+  </nav>
+</header>
+
 <main class="pt-20">
 <section id="hero" class="h-[600px] bg-neutral-100">
 <div class="container mx-auto px-4 py-16">
