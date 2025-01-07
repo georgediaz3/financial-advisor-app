@@ -298,5 +298,16 @@
         width: 100%;
         height: 100%;
     }
+
+#header {
+  padding: 1rem 1rem; /* Adjust padding */
+}
+
+@media (max-width: 768px) {
+  #header nav {
+    flex-direction: column; /* Stack content on smaller screens */
+  }
+}
+
     
     </style>
