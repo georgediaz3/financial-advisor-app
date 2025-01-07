@@ -596,48 +596,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
-<main class="container mx-auto px-4 py-8">
+<main class="container mx-auto px-4 py-8" style="padding-top: 80px;">
     <header id="header" class="fixed w-full bg-white border-b border-neutral-200 z-50">
-  <nav class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
-    <!-- Logo -->
-    <a href="/" class="flex items-center space-x-2">
-      <span class="text-xl font-bold">FYINANCE</span>
-    </a>
+        <nav class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-xl font-bold">FYINANCE</span>
+            </a>
 
-    <!-- Hamburger Menu for Mobile -->
-    <button id="menu-toggle" class="md:hidden text-neutral-600 hover:text-neutral-900">
-      <i class="fa-solid fa-bars text-xl"></i>
-    </button>
+            <!-- Hamburger Menu for Mobile -->
+            <button id="menu-toggle" class="md:hidden text-neutral-600 hover:text-neutral-900">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
 
-    <!-- Navigation Links -->
-    <div id="menu" class="hidden w-full md:flex md:w-auto mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-6">
-      <a href="{{ url_for('aboutus') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
-        About Us
-      </a>
-      <a href="{{ url_for('tools') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
-        Tools
-      </a>
-      <a href="{{ url_for('planning') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
-        Planning
-      </a>
-      <a href="{{ url_for('chatbot') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
-        AI Assistant
-      </a>
-    </div>
-  </nav>
-</header>
+            <!-- Navigation Links -->
+            <div id="menu" class="hidden w-full md:flex md:w-auto mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-6">
+                <a href="{{ url_for('aboutus') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+                    About Us
+                </a>
+                <a href="{{ url_for('tools') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+                    Tools
+                </a>
+                <a href="{{ url_for('planning') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+                    Planning
+                </a>
+                <a href="{{ url_for('chatbot') }}" class="block md:inline-block text-neutral-600 hover:text-neutral-900">
+                    AI Assistant
+                </a>
+            </div>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section id="hero" class="text-center mb-16">
-      <h1 class="text-4xl font-bold mb-4">Investment Portfolio Analyzer</h1>
-      <p class="text-neutral-600 mb-8 max-w-2xl mx-auto">
-        Evaluate and optimize your portfolio to achieve the perfect balance between risk and return.
-      </p>
-      <button id="analyzeButton" class="bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800">
-        Start Analyzing Now
-      </button>
+        <h1 class="text-4xl font-bold mb-4">Investment Portfolio Analyzer</h1>
+        <p class="text-neutral-600 mb-8 max-w-2xl mx-auto">
+            Evaluate and optimize your portfolio to achieve the perfect balance between risk and return.
+        </p>
+        <button id="analyzeButton" class="bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800">
+            Start Analyzing Now
+        </button>
     </section>
-
     <!-- Portfolio Input Section -->
     <section id="portfolio-input" class="bg-white rounded-xl shadow-sm p-6 mb-8">
       <div class="flex justify-between items-center mb-6">
